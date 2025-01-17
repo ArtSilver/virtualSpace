@@ -42,6 +42,8 @@ function setup() {
   bassSound.loop();
   barSound.loop();
   barSound.play();
+  drumSound.play();
+  bassSound.play();
   maxDist = dist(0,0,width,height);
 }
 
@@ -57,11 +59,11 @@ function draw() {
   let dDrum = dist(drumsX,drumsY,earsX,earsY)/maxDist;
   let dBass = dist(bassX,bassY,earsX,earsY)/maxDist;
   let dBar = dist(barX,barY,earsX,earsY)/maxDist;
-  text('Drum dist: '+dDrum, 10, 100);
-  text('Bass dist: '+dBass, 10, 120);
-  text('Bar dist: '+dBar, 10, 140);
+  text('Drum dist: '+dDrum, 10, 200);
+  text('Bass dist: '+dBass, 10, 220);
+  text('Bar dist: '+dBar, 10, 240);
   barSound.amp(dBar);
-  bassSound.amp(dBass); bass.play();
+  bassSound.amp(dBass); //bass.play();
   drumSound.amp(dDrum);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
