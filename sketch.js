@@ -11,7 +11,7 @@ let ears, bar,drums, bass;
 
 function setup() {
   createCanvas(400, 800);
-  ears = loadImage('/virtualSpace/assets/ears.jpg');//
+  ears = loadImage('assets/ears.jpg');//
 }
 
 function draw() {
