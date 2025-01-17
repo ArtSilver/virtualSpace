@@ -50,7 +50,6 @@ function mouseDragged() {
   } else {
     dbString = 'out';
   }
-  }
 }
 
 // Resize the canvas when the
