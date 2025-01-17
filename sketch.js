@@ -34,14 +34,16 @@ function draw() {
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY); 
   describe('the listener');
-  line(mouseX,mouseY, pmouseX, pmouseY);
+  //line(mouseX,mouseY, pmouseX, pmouseY);
 }
 
 function mouseDragged() {
- // if (xMouse < earsSize/2 && yDelta < earsSize/2) {
+  let xDelta = abs(mouseX - earsX);
+  let yDelta = abs(mouseY - earsY);
+  if (xDelta < earsSize*0.5 && yDelta < earsSize*0.5) {
     earsX = mouseX;
     earsY = mouseY;  
-  //}
+  }
 }
 
 // Resize the canvas when the
