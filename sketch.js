@@ -36,7 +36,7 @@ function draw() {
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY);
   text(`Ears at (${earsX}, ${earsY}), [${mouseX},${mouseY}]`+dbString, 10, 20);
-  text('deltas: '+abs(mouseX-earsX)+', '+abs(mouseY-earsY)+' size '+earsSize, 10, 40);
+  text('deltas: '+abs(mouseX-earsX)+', '+abs(mouseY-earsY)+' size '+earsSize, 10, 200);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
