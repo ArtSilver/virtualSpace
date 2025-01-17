@@ -2,16 +2,16 @@ let ears, bar,drums, bass;
 
 
 // Load the images and create p5.Image objects.
-//function preload() {
-//  ears = loadImage('/assets/ears.jpg');
+function preload() {
+  ears = loadImage('ears.jpg');
   //bar = loadImage('/assets/bar.jpg');
   //drums = loadImage('/assets/drums.jpg');
   //bass = loadImage('/assets/bass.jpg');
-//}
+}
 
 function setup() {
   createCanvas(400, 800);
-  ears = loadImage('assets/ears.jpg');//
+  //ears = loadImage('assets/ears.jpg');//
 }
 
 function draw() {
