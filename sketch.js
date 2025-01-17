@@ -21,6 +21,7 @@ function draw() {
   //image(bar, width/2-100, height-100, 100, 100);
   imageMode(CENTER);
   image(ears, width/2, height/2, 200, 200);
+  describe('the listener');
 }
 
 
