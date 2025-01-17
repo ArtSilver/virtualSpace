@@ -1,7 +1,7 @@
 let ears, bar,drums, bass;
-let barW=100;
-let barH=100;
-let barScale=0.5;
+let barW;
+let barH;
+let barScale;
 
 let earsX, earsY;
 let earsSize;
