@@ -27,7 +27,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight).parent("canvasParent").id("drawingCanvas");
+  stopTouchScrolling(document.getElementById('drawingCanvas'));
   earsSize = ears.width;
   barW=bar.width;
   barH=bar.height;
@@ -88,3 +89,22 @@ function windowResized() {
   maxDist = dist(0,0,width,height);
 }
 
+function stopTouchScrolling(canvas){
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener("touchstart", function (e) {
+      if (e.target == canvas) {
+          e.preventDefault();
+      }
+  }, { passive: false });
+  document.body.addEventListener("touchend", function (e) {
+      if (e.target == canvas) {
+          e.preventDefault();
+      }
+  }, { passive: false });
+  document.body.addEventListener("touchmove", function (e) {
+      if (e.target == canvas) {
+          e.preventDefault();
+      }
+  }, { passive: false });
+  
+  }
