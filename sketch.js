@@ -6,7 +6,7 @@ function preload() {
   ears = loadImage('ears.jpg');
   //bar = loadImage('/assets/bar.jpg');
   //drums = loadImage('/assets/drums.jpg');
-  //bass = loadImage('/assets/bass.jpg');
+  bass = loadImage('./assets/bass.jpg');
 }
 
 function setup() {
@@ -23,6 +23,7 @@ function draw() {
   imageMode(CENTER);
   image(ears, width/2, height/2, 200, 200);
   describe('the listener');
+  image(bass,0,0,100,100);
 }
 
 
