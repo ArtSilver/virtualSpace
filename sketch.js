@@ -38,12 +38,12 @@ function draw() {
 }
 
 function mouseDragged() {
-  let xDelta = abs(mouseX - pmouseX);
-  let yDelta = abs(mouseY - pmouseY);
-  //if (xDelta < earsSize/2 && yDelta < earsSize/2) {
-    earsX += xDelta;
-    earsY += yDelta;  
-  //}
+  let xDelta = abs(mouseX - earsX);
+  let yDelta = abs(mouseY - earsY);
+  if (xDelta < earsSize/2 && yDelta < earsSize/2) {
+    earsX = mouseX;
+    earsY = mouseY;  
+  }
 }
 
 // Resize the canvas when the
