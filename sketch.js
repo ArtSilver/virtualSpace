@@ -1,29 +1,41 @@
 let ears, bar,drums, bass;
+let barW=100;
+let barH=100;
 
+let earsX, earsY;
 
 // Load the images and create p5.Image objects.
 function preload() {
-  ears = loadImage('ears.jpg');
-  //bar = loadImage('/assets/bar.jpg');
-  //drums = loadImage('/assets/drums.jpg');
+  ears = loadImage('./assets/ears.jpg');
+  bar = loadImage('./assets/bar.jpg');
+  barW=bar.width;
+  barH=bar.height;
+  drums = loadImage('./assets/drums.jpg');
   bass = loadImage('./assets/bass.jpg');
 }
 
 function setup() {
-  createCanvas(400, 800);
-  //ears = loadImage('assets/ears.jpg');//
+  createCanvas(windowWidth, windowHeight);
+  earsX = width/2;
+  earsY = height/2;
 }
 
 function draw() {
   background(220);
-  //imageMode(CORNER)
-  //image(drums, 0, 0, 100, 100);
-  //image(bass, width-100, 0, 100, 100);
-  //image(bar, width/2-100, height-100, 100, 100);
+  imageMode(CORNER)
+  image(drums, 0, 0, width/3,width/3);
+  image(bass,width*0.666,0,width/3,width/3);
+ 
   imageMode(CENTER);
-  image(ears, width/2, height/2, 200, 200);
+  image(bar, width*0.5, height-0.1875*width, width*0.5, height*0.375);
+  image(ears, earsX, earsY); 
   describe('the listener');
-  image(bass,0,0,100,100);
+ 
 }
 
+// Resize the canvas when the
+// browser's size changes.
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
