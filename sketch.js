@@ -34,7 +34,7 @@ function draw() {
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY); 
   describe('the listener');
- 
+  line(mouseX,mouseY, pmouseX, pmouseY);
 }
 
 function mouseDragged() {
@@ -51,5 +51,7 @@ function mouseDragged() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   barScale = width/barW * 0.5;
+  earsX = width/2;
+  earsY = height/2;
 }
 
