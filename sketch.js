@@ -21,7 +21,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   earsX = width/2;
   earsY = height/2;
-  barScale = width/barW * 0.5;
+  barScale = width/barW * 0.25;
 }
 
 function draw() {
@@ -38,12 +38,12 @@ function draw() {
 }
 
 function mouseDragged() {
-  let xDelta = abs(mouseX - earsX);
-  let yDelta = abs(mouseY - earsY);
-  if (xDelta < earsSize/2 && yDelta < earsSize/2) {
-    earsX = mouseX;
-    earsY = mouseY;
-  }
+  let xDelta = abs(mouseX - pmouseX);
+  let yDelta = abs(mouseY - pmouseY);
+  //if (xDelta < earsSize/2 && yDelta < earsSize/2) {
+    earsX += xDelta;
+    earsY += yDelta;  
+  //}
 }
 
 // Resize the canvas when the
