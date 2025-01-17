@@ -27,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  background(220,220,0);
+  background(220,220,210);
   imageMode(CORNER)
   image(drums, 0, 0, width/4,width/4);
   image(bass,width*0.75,0,width/4,width/4);
