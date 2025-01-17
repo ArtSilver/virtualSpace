@@ -27,11 +27,11 @@ function setup() {
 function draw() {
   background(220);
   imageMode(CORNER)
-  image(drums, 0, 0, width/3,width/3);
-  image(bass,width*0.666,0,width/3,width/3);
+  image(drums, 0, 0, width/4,width/4);
+  image(bass,width*0.75,0,width/4,width/4);
  
   imageMode(CENTER);
-  image(bar, width*0.5, height-0.1875*width, barW*barScale, barH*barScale);
+  image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY); 
   describe('the listener');
  
