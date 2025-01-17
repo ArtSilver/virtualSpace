@@ -12,6 +12,7 @@ let earsSize;
 let dbString = '';
 
 let drumSound, bassSound, barSound;
+let maxDist
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -39,6 +40,8 @@ function setup() {
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
+  barSound.play();
+  maxDist = dist(0,0,width,height);
 }
 
 function draw() {
@@ -56,9 +59,9 @@ function draw() {
   text('Drum dist: '+dDrum, 10, 100);
   text('Bass dist: '+dBass, 10, 120);
   text('Bar dist: '+dBar, 10, 140);
-  barSound.setVolume(1-dBar/width);
-  bassSound.setVolume(1-dBass/width);
-  drumSound.setVolume(1-dDrum/width);
+  barSound.amp(dBar/maxDist);
+  bassSound.amp(dBass/maxDist);
+  drumSound.amp(dDrum/maxDist);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
@@ -82,5 +85,6 @@ function windowResized() {
   barScale = width/barW * 0.5;
   earsX = width/2;
   earsY = height/2;
+  maxDist = dist(0,0,width,height);
 }
 
