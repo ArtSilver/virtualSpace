@@ -6,6 +6,8 @@ let barScale=0.5;
 let earsX, earsY;
 let earsSize;
 
+let dbString = '';
+
 // Load the images and create p5.Image objects.
 function preload() {
   ears = loadImage('./assets/ears.jpg');
@@ -33,7 +35,7 @@ function draw() {
   imageMode(CENTER);
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY);
-  text(`Ears at (${earsX}, ${earsY}), [${mouseX},${mouseY}]`, 10, 20);
+  text(`Ears at (${earsX}, ${earsY}), [${mouseX},${mouseY}]`+dbString, 10, 20);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
@@ -44,6 +46,10 @@ function mouseDragged() {
   if (xDelta < earsSize*0.5 && yDelta < earsSize*0.5) {
     earsX = mouseX;
     earsY = mouseY;  
+    dbString = 'over';
+  } else {
+    dbString = 'out';
+  }
   }
 }
 
