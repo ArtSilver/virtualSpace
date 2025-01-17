@@ -34,9 +34,12 @@ function setup() {
   barH=bar.height;
   earsX = width/2;
   earsY = height/2;
-  drumsX = 0;drumsY = 0;
-  bassX = width;bassY = 0;
-  barX = width*0.5;barY = height;
+  drumsX = 0;
+  drumsY = 0;
+  bassX = width;
+  bassY = 0;
+  barX = width*0.5;
+  barY = height;
   barScale = width/barW * 0.25;
   drumSound.loop(true);
   bassSound.loop(true);
@@ -44,7 +47,7 @@ function setup() {
   barSound.play();
   drumSound.play();
   bassSound.play();
-  maxDist = dist(0,0,width,height);
+  maxDist = 0.5*dist(0,0,width,height);
 }
 
 function clampVolume(value) {
