@@ -38,9 +38,9 @@ function setup() {
   bassX = width;bassY = 0;
   barX = width*0.5;barY = height;
   barScale = width/barW * 0.25;
-  drumSound.loop();
-  bassSound.loop();
-  barSound.loop();
+  drumSound.loop(true);
+  bassSound.loop(true);
+  barSound.loop(true);
   barSound.play();
   drumSound.play();
   bassSound.play();
