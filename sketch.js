@@ -27,7 +27,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight).parent("canvasParent").id("drawingCanvas");
+  createCanvas(windowWidth, windowHeight); //.parent("canvasParent").id("drawingCanvas");
   //stopTouchScrolling(document.getElementById('drawingCanvas'));
   earsSize = ears.width;
   barW=bar.width;
