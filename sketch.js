@@ -11,16 +11,16 @@ let dbString = '';
 // Load the images and create p5.Image objects.
 function preload() {
   ears = loadImage('./assets/ears.jpg');
-  earsSize = ears.width;
   bar = loadImage('./assets/bar.jpg');
-  barW=bar.width;
-  barH=bar.height;
   drums = loadImage('./assets/drums.jpg');
   bass = loadImage('./assets/bass.jpg');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  earsSize = ears.width;
+  barW=bar.width;
+  barH=bar.height;
   earsX = width/2;
   earsY = height/2;
   barScale = width/barW * 0.25;
@@ -36,6 +36,7 @@ function draw() {
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY);
   text(`Ears at (${earsX}, ${earsY}), [${mouseX},${mouseY}]`+dbString, 10, 20);
+  text('deltas: '+abs(mouseX-earsX)+', '+abs(mouseY-earsY)+' size '+earsSize}', 10, 40);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
