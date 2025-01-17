@@ -62,13 +62,13 @@ function draw() {
   imageMode(CENTER);
   image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
   image(ears, earsX, earsY);
-  let dDrum = clampVolume(dist(drumsX,drumsY,earsX,earsY)/maxDist);
-  let dBass = clampVolume(dist(bassX,bassY,earsX,earsY)/maxDist);
-  let dBar = clampVolume(dist(barX,barY,earsX,earsY)/maxDist);
+  let dDrum = 1.0-clampVolume(dist(drumsX,drumsY,earsX,earsY)/maxDist);
+  let dBass = 1.0-clampVolume(dist(bassX,bassY,earsX,earsY)/maxDist);
+  let dBar = 1.0-clampVolume(dist(barX,barY,earsX,earsY)/maxDist);
   text('Drum dist: '+dDrum, 10, 200);
   text('Bass dist: '+dBass, 10, 220);
   text('Bar dist: '+dBar, 10, 240);
-  barSound.amp(dBar);
+  barSound.setVolume(dBar);
   bassSound.amp(dBass); //bass.play();
   drumSound.amp(dDrum);
   describe('the listener');
