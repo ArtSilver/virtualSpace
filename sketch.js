@@ -39,9 +39,9 @@ function setup() {
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
-  barSound.setVolume(barVolume);
-  bassSound.setVolume(bassVolume);
-  drumSound.setVolume(drumVolume);
+  barSound.amp(barVolume);
+  bassSound.amp(bassVolume);
+  drumSound.amp(drumVolume);
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
