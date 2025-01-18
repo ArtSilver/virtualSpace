@@ -24,9 +24,9 @@ function preload() {
   bar = loadImage('./assets/bar.jpg');
   drums = loadImage('./assets/drums.jpg');
   bass = loadImage('./assets/bass.jpg');
-  drumSound = loadSound('./assets/drum');
-  bassSound = loadSound('./assets/bass');
-  barSound = loadSound('./assets/bar');
+  drumSound = loadSound('./assets/drum.mp3');
+  bassSound = loadSound('./assets/bass.mp3');
+  barSound = loadSound('./assets/bar.mp3');
 }
 
 function setup() {
