@@ -18,7 +18,8 @@ var bassVolume;
 var drumVolume;
 
 var volSlider;
-var volX, volY, volSize;
+var volX, volY, volSize, volRange;
+var onOffButton;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -34,14 +35,27 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  volSlider = createSlider(0.0, 1.0, 0.5);
+  volSlider = createSlider(0, volRange, volRange/2);
+  onOffButton = createButton('Play/Pause');
+  onOffButton.mousePressed(function() {
+    if (drumSound.isPlaying()) {
+      drumSound.pause();
+      bassSound.pause();
+      barSound.pause();
+    } else {
+      drumSound.play();
+      bassSound.play();
+      barSound.play();
+    }
+  });
 
   earsSize = ears.width;
   barImageW=bar.width;
   barImageH=bar.height;
   setupGeometry();
-  volSlider.position(volX, volY);
+  volSlider.position(volX-volSize/2, volY);
   volSlider.size(volSize);
+  onOffButton.position(volX, volY+20);
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
@@ -60,8 +74,8 @@ var loopStatus;
 var playStatus;
 function draw() {
   background(220,220,210);
-  outputVolume(volSlider.value());
-  
+  outputVolume(volSlider.value()/volRange);
+
   imageMode(CORNER);
   image(drums, 0, 0, width/4,width/4);
   image(bass,width*0.75,0,width/4,width/4);
@@ -139,4 +153,5 @@ function windowResized() {
   setupGeometry();
   volSlider.position(volX, volY);
   volSlider.size(volSize);
+  onOffButton.position(volX, volY+20);
 }
