@@ -90,18 +90,18 @@ function draw() {
     drumSound.setVolume(0);
   }
 
-  text('double click/tap: start/stop; drag me', width/5, barBoundry-20);
+  text('double click/tap: start/stop; drag me to sound zones', width/5, barBoundry-20);
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.getVolume();} else {playStatus = ' not playing';}
   text('Drum vol: '+drumVolume+loopStatus+playStatus, width/5, 100);
  
-  if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
-  if (bassSound.isPlaying()) {playStatus = ' playing'+bassSound.getVolume();} else {playStatus = ' not playing';}
-  text('Bass vol: '+bassVolume+loopStatus+playStatus, width/5, 120);
+  //if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
+  //if (bassSound.isPlaying()) {playStatus = ' playing'+bassSound.getVolume();} else {playStatus = ' not playing';}
+  //text('Bass vol: '+bassVolume+loopStatus+playStatus, width/5, 120);
   
-  if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
-  if (barSound.isPlaying()) {playStatus = ' playing'+barSound.getVolume();} else {playStatus = ' not playing';}
-  text('Bar vol: '+barVolume+loopStatus+playStatus, width/5, 140);
+  //if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
+  //if (barSound.isPlaying()) {playStatus = ' playing'+barSound.getVolume();} else {playStatus = ' not playing';}
+  //text('Bar vol: '+barVolume+loopStatus+playStatus, width/5, 140);
 
   text('volume: '+getOutputVolume(), width/5, 160);
 
