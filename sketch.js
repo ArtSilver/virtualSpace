@@ -79,8 +79,11 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume);
+  drumSound.setVolume(drumVolume);
 
-  text('double click/tap to toggle sound', width/5, 20);
+  text('double click/tap: start/stop; drag me', width/5, barBoundry-20);
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.getVolume();} else {playStatus = ' not playing';}
   text('Drum vol: '+drumVolume+loopStatus+playStatus, width/5, 100);
