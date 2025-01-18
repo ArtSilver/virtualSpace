@@ -39,9 +39,9 @@ function setup() {
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
-  barSound.amp(barVolume);
-  bassSound.amp(bassVolume);
-  drumSound.amp(drumVolume);
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume);
+  drumSound.setVolume(drumVolume);
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
@@ -63,20 +63,22 @@ function draw() {
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
-  if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.amp();} else {playStatus = ' not playing';}
+  if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.setVolume();} else {playStatus = ' not playing';}
   text('Drum vol: '+drumVolume+loopStatus+playStatus, width/2, 100);
  
   if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
-  if (bassSound.isPlaying()) {playStatus = ' playing'+bassSound.amp();} else {playStatus = ' not playing';}
+  if (bassSound.isPlaying()) {playStatus = ' playing'+bassSound.setVolume();} else {playStatus = ' not playing';}
   text('Bass vol: '+bassVolume+loopStatus+playStatus, width/2, 120);
   
   if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
-  if (barSound.isPlaying()) {playStatus = ' playing'+barSound.amp();} else {playStatus = ' not playing';}
+  if (barSound.isPlaying()) {playStatus = ' playing'+barSound.setVolume();} else {playStatus = ' not playing';}
   text('Bar vol: '+barVolume+loopStatus+playStatus, width/2, 140);
 
-  barSound.amp(barVolume);
-  bassSound.amp(bassVolume); //bass.play();
-  drumSound.amp(drumVolume);
+  text('output vol: '+getOutputVolume(), width/2, 160);
+
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume); //bass.play();
+  drumSound.setVolume(drumVolume);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
