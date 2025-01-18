@@ -68,12 +68,12 @@ function draw() {
  
   if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (bassSound.isPlaying()) {playStatus = ' playing';} else {playStatus = ' not playing';}
-  text('Bass vol: '+bassVolume+loopStatus+playStatus,, width/2, 120);
+  text('Bass vol: '+bassVolume+loopStatus+playStatus, width/2, 120);
   
   if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (barSound.isPlaying()) {playStatus = ' playing';} else {playStatus = ' not playing';}
-  text('Bar vol: '+barVolume+loopStatus+playStatus,, width/2, 140);
-  
+  text('Bar vol: '+barVolume+loopStatus+playStatus, width/2, 140);
+
   barSound.setVolume(barVolume);
   bassSound.setVolume(bassVolume); //bass.play();
   drumSound.setVolume(drumVolume);
