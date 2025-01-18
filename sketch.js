@@ -49,7 +49,7 @@ function doubleClicked() {
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
-  canvas.mouseClicked(doubleClicked);
+  canvas.touchEnded(doubleClicked);
   soundOn = false
   earsSize = ears.width;
   barImageW=bar.width;
