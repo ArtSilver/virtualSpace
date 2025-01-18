@@ -1,21 +1,21 @@
-let ears, bar,drums, bass;
-let barImageW, barImageH;
-let barDisplayW, barDisplayH; 
+var ears, bar,drums, bass;
+var barImageW, barImageH;
+var barDisplayW, barDisplayH; 
 
-let earsX, earsY;
-let drumsX, drumsY;
-let bassX, bassY;
-let barX, barY;
-let earsSize;
+var earsX, earsY;
+var drumsX, drumsY;
+var bassX, bassY;
+var barX, barY;
+var earsSize;
 
-let dbString = '';
+var dbString = '';
 
-let drumSound, bassSound, barSound;
+var drumSound, bassSound, barSound;
 
-let barBoundry;
-let barVolume = 0.0;
-let bassVolume = 0.5;
-let drumVolume = 0.5;
+var barBoundry;
+var barVolume;
+var bassVolume;
+var drumVolume;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -36,9 +36,15 @@ function setup() {
   barImageW=bar.width;
   barImageH=bar.height;
   setupGeometry();
-  drumSound.loop(true);
-  bassSound.loop(true);
-  barSound.loop(true);
+  barVolume = 0.0;
+  bassVolume = 0.5;
+  drumVolume = 0.5;
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume);
+  drumSound.setVolume(drumVolume);
+  drumSound.loop();
+  bassSound.loop();
+  barSound.loop();
   barSound.play();
   drumSound.play();
   bassSound.play();
@@ -54,12 +60,12 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
-  text('Drum vol: '+drumVolume, 10, 200);
-  text('Bass vol: '+bassVolume, 10, 220);
-  text('Bar vol: '+barVolume, 10, 240);
+  text('Drum vol: '+drumVolume, width/2, 200);
+  text('Bass vol: '+bassVolume, width/2, 220);
+  text('Bar vol: '+barVolume, width/2, 240);
   barSound.setVolume(barVolume);
-  bassSound.amp(bassVolume); //bass.play();
-  drumSound.amp(drumVolume);
+  bassSound.setVolume(bassVolume); //bass.play();
+  drumSound.setVolume(drumVolume);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
