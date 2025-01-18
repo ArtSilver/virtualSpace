@@ -17,8 +17,7 @@ var barVolume;
 var bassVolume;
 var drumVolume;
 
-var volSlider;
-var volX, volY, volSize, volRange;
+var soundOn = false;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -32,19 +31,30 @@ function preload() {
   barSound = loadSound('./assets/bar.mp3');
 }
 
+function doubleClicked() {
+  // Code to run.
+  soundOn = !soundOn;
+  if (soundOn) {
+    barSound.setVolume(barVolume);
+    bassSound.setVolume(bassVolume);
+    drumSound.setVolume(drumVolume);
+  } else {
+    barSound.setVolume(0);
+    bassSound.setVolume(0);
+    drumSound.setVolume(0);
+  }
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  volSlider = createSlider(0, volRange, volRange/5);
-
+  soundOn = false
   earsSize = ears.width;
   barImageW=bar.width;
   barImageH=bar.height;
   setupGeometry();
-  volSlider.position(volX-volSize/2, volY);
-  volSlider.size(volSize);
   barVolume = 0.0;
-  bassVolume = 0.5;
-  drumVolume = 0.5;
+  bassVolume = 0.0;
+  drumVolume = 0.0;
   barSound.setVolume(barVolume);
   bassSound.setVolume(bassVolume);
   drumSound.setVolume(drumVolume);
@@ -60,7 +70,6 @@ var loopStatus;
 var playStatus;
 function draw() {
   background(220,220,210);
-  outputVolume(volSlider.value()/volRange);
 
   imageMode(CORNER);
   image(drums, 0, 0, width/4,width/4);
@@ -70,11 +79,8 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
-  
-  barSound.setVolume(barVolume);
-  bassSound.setVolume(bassVolume);
-  drumSound.setVolume(drumVolume);
 
+  text('double click/tap to toggle sound', width/5, 20);
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.getVolume();} else {playStatus = ' not playing';}
   text('Drum vol: '+drumVolume+loopStatus+playStatus, width/5, 100);
@@ -87,7 +93,7 @@ function draw() {
   if (barSound.isPlaying()) {playStatus = ' playing'+barSound.getVolume();} else {playStatus = ' not playing';}
   text('Bar vol: '+barVolume+loopStatus+playStatus, width/5, 140);
 
-  text('slider: '+volSlider.value()+' '+getOutputVolume(), width/5, 160);
+  text('volume: '+getOutputVolume(), width/5, 160);
 
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
@@ -127,9 +133,6 @@ function setupGeometry() {
   barX = width*0.5;
   barY = height-barDisplayH*0.5;
   barBoundry = height-barDisplayH*1.5;
-  volX = width/2;
-  volY = 10;
-  volSize = width/5;
 }
 
 // Resize the canvas when the
@@ -137,6 +140,4 @@ function setupGeometry() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   setupGeometry();
-  volSlider.position(volX, volY);
-  volSlider.size(volSize);
 }
