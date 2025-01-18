@@ -1,6 +1,6 @@
 let ears, bar,drums, bass;
-let barW;
-let barH;
+let barImageW, barImageH;
+let barDisplayW, barDisplayH; 
 let barScale;
 
 let earsX, earsY;
@@ -12,7 +12,12 @@ let earsSize;
 let dbString = '';
 
 let drumSound, bassSound, barSound;
-let maxDist
+let maxDist;
+
+let barBoundry;
+let barVolume = 0.0;
+let bassVolume = 0.5;
+let drumVolume = 0.5;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -30,24 +35,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight); //.parent("canvasParent").id("drawingCanvas");
   //stopTouchScrolling(document.getElementById('drawingCanvas'));
   earsSize = ears.width;
-  barW=bar.width;
-  barH=bar.height;
-  earsX = width/2;
-  earsY = height/2;
-  drumsX = 0;
-  drumsY = 0;
-  bassX = width;
-  bassY = 0;
-  barX = width*0.5;
-  barY = height;
-  barScale = width/barW * 0.25;
+  barImageW=bar.width;
+  barImageH=bar.height;
+  setupGeometry();
   drumSound.loop(true);
   bassSound.loop(true);
   barSound.loop(true);
   barSound.play();
   drumSound.play();
   bassSound.play();
-  maxDist = 0.5*dist(0,0,width,height);
 }
 
 function clampVolume(value) {
@@ -63,14 +59,12 @@ function draw() {
   image(bass,width*0.75,0,width/4,width/4);
  
   imageMode(CENTER);
-  image(bar, width*0.5, height-barH*barScale*0.5, barW*barScale, barH*barScale);
+  image(bar, barX, barY, barDisplayW, barDisplayH);
+  line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
-  let dDrum = 1.0-clampVolume(dist(drumsX,drumsY,earsX,earsY)/maxDist);
-  let dBass = 1.0-clampVolume(dist(bassX,bassY,earsX,earsY)/maxDist);
-  let dBar = 1.0-clampVolume(dist(barX,barY,earsX,earsY)/maxDist);
-  text('Drum dist: '+dDrum, 10, 200);
-  text('Bass dist: '+dBass, 10, 220);
-  text('Bar dist: '+dBar, 10, 240);
+  text('Drum vol: '+drumVolume, 10, 200);
+  text('Bass vol: '+bassVolume, 10, 220);
+  text('Bar vol: '+barVolume, 10, 240);
   barSound.setVolume(dBar);
   bassSound.amp(dBass); //bass.play();
   drumSound.amp(dDrum);
@@ -84,20 +78,42 @@ function mouseDragged() {
   if (xDelta < earsSize*0.5 && yDelta < earsSize*0.5) {
     earsX = mouseX;
     earsY = mouseY;  
-    dbString = 'over';
-  } else {
-    dbString = 'out';
+    let dDrum = abs(earsX-drumsX)/width;
+    let dBass = abs(earsX-bassX)/width;
+    if (earsY < barBoundry) {
+      barVolume=0;
+      drumVolume = dDrum;
+      bassVolume = dBass;
+    } else {
+      barVolume = 1;
+      drumVolume = 0;
+      bassVolume = 0;
+    }
   }
+  return false
+}
+
+function setupGeometry() {
+  earsX = width/2;
+  earsY = height/2;
+  drumsX = 0;
+  drumsY = 0;
+  bassX = width;
+  bassY = 0;
+  barDisplayW = width/4;
+  barDisplayH = barImageH/barImageW * barDisplayW;
+  barX = width*0.5;
+  barY = height-barDisplayH*0.5;
+  barScale = width/barW * 0.25;
+  maxDist = 0.5*dist(0,0,width,height);
+  barBoundry = height-barDisplayH*1.5;
 }
 
 // Resize the canvas when the
 // browser's size changes.
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  barScale = width/barW * 0.5;
-  earsX = width/2;
-  earsY = height/2;
-  maxDist = dist(0,0,width,height);
+  setupGeometry();
 }
 
 function stopTouchScrolling(canvas){
