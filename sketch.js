@@ -50,6 +50,8 @@ function setup() {
   bassSound.play();
 }
 
+var loopStatus;
+var playStatus;
 function draw() {
   background(220,220,210);
   imageMode(CORNER);
@@ -60,9 +62,18 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
-  text('Drum vol: '+drumVolume, width/2, 200);
-  text('Bass vol: '+bassVolume, width/2, 220);
-  text('Bar vol: '+barVolume, width/2, 240);
+  if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
+  if (drumSound.isPlaying()) {playStatus = ' playing';} else {playStatus = ' not playing';}
+  text('Drum vol: '+drumVolume+loopStatus+playStatus, width/2, 100);
+ 
+  if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
+  if (bassSound.isPlaying()) {playStatus = ' playing';} else {playStatus = ' not playing';}
+  text('Bass vol: '+bassVolume+loopStatus+playStatus,, width/2, 120);
+  
+  if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
+  if (barSound.isPlaying()) {playStatus = ' playing';} else {playStatus = ' not playing';}
+  text('Bar vol: '+barVolume+loopStatus+playStatus,, width/2, 140);
+  
   barSound.setVolume(barVolume);
   bassSound.setVolume(bassVolume); //bass.play();
   drumSound.setVolume(drumVolume);
