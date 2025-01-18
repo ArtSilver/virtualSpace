@@ -65,9 +65,9 @@ function setup() {
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
-  barSound.play();
-  drumSound.play();
-  bassSound.play();
+  //barSound.play();
+  //drumSound.play();
+  //bassSound.play();
 }
 
 var loopStatus;
