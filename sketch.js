@@ -43,6 +43,7 @@ function doubleClicked() {
     bassSound.setVolume(0);
     drumSound.setVolume(0);
   }
+  return false;
 }
 
 function setup() {
