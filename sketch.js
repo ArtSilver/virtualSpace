@@ -1,7 +1,6 @@
 let ears, bar,drums, bass;
 let barImageW, barImageH;
 let barDisplayW, barDisplayH; 
-let barScale;
 
 let earsX, earsY;
 let drumsX, drumsY;
@@ -12,7 +11,6 @@ let earsSize;
 let dbString = '';
 
 let drumSound, bassSound, barSound;
-let maxDist;
 
 let barBoundry;
 let barVolume = 0.0;
@@ -46,15 +44,9 @@ function setup() {
   bassSound.play();
 }
 
-function clampVolume(value) {
-  if (value<0.5) return 0.0;
-  if (value>0.9) return 1.0;
-  return value
-} 
-
 function draw() {
   background(220,220,210);
-  imageMode(CORNER)
+  imageMode(CORNER);
   image(drums, 0, 0, width/4,width/4);
   image(bass,width*0.75,0,width/4,width/4);
  
@@ -104,8 +96,6 @@ function setupGeometry() {
   barDisplayH = barImageH/barImageW * barDisplayW;
   barX = width*0.5;
   barY = height-barDisplayH*0.5;
-  barScale = width/barW * 0.25;
-  maxDist = 0.5*dist(0,0,width,height);
   barBoundry = height-barDisplayH*1.5;
 }
 
