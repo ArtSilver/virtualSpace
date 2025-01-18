@@ -18,6 +18,7 @@ var bassVolume;
 var drumVolume;
 
 var soundOn = false;
+var canvas;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -47,7 +48,8 @@ function doubleClicked() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth, windowHeight);
+  canvas.mouseClicked(doubleClicked);
   soundOn = false
   earsSize = ears.width;
   barImageW=bar.width;
