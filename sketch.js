@@ -17,6 +17,9 @@ var barVolume;
 var bassVolume;
 var drumVolume;
 
+var volSlider;
+var volX, volY, volSize;
+
 // Load the images and create p5.Image objects.
 function preload() {
   soundFormats('mp3', 'ogg');
@@ -31,10 +34,14 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  volSlider = createSlider(0.0, 1.0, 0.5);
+
   earsSize = ears.width;
   barImageW=bar.width;
   barImageH=bar.height;
   setupGeometry();
+  volSlider.position(volX, volY);
+  volSlider.size(volSize);
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
@@ -53,6 +60,8 @@ var loopStatus;
 var playStatus;
 function draw() {
   background(220,220,210);
+  outputVolume(volSlider.value());
+  
   imageMode(CORNER);
   image(drums, 0, 0, width/4,width/4);
   image(bass,width*0.75,0,width/4,width/4);
@@ -78,7 +87,7 @@ function draw() {
   if (barSound.isPlaying()) {playStatus = ' playing'+barSound.getVolume();} else {playStatus = ' not playing';}
   text('Bar vol: '+barVolume+loopStatus+playStatus, width/5, 140);
 
-  text('output vol: '+getOutputVolume(), width/5, 160);
+  text('slider: '+volSlider.value()+' '+getOutputVolume(), width/5, 160);
 
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
@@ -118,6 +127,9 @@ function setupGeometry() {
   barX = width*0.5;
   barY = height-barDisplayH*0.5;
   barBoundry = height-barDisplayH*1.5;
+  volX = width/2;
+  volY = 10;
+  volSize = width/5;
 }
 
 // Resize the canvas when the
@@ -125,4 +137,6 @@ function setupGeometry() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   setupGeometry();
+  volSlider.position(volX, volY);
+  volSlider.size(volSize);
 }
