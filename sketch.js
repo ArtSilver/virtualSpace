@@ -32,7 +32,7 @@ function preload() {
   barSound = loadSound('./assets/bar.mp3');
 }
 
-function doubleClicked() {
+function dblClick() {
   // Code to run.
   soundOn = !soundOn;
   if (soundOn) {
@@ -49,7 +49,7 @@ function doubleClicked() {
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
-  //canvas.touchEnded(doubleClicked);
+  canvas.doubleClicked(dblClick);
   soundOn = false
   earsSize = ears.width;
   barImageW=bar.width;
