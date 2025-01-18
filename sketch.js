@@ -79,9 +79,15 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
-  barSound.setVolume(barVolume);
-  bassSound.setVolume(bassVolume);
-  drumSound.setVolume(drumVolume);
+  if (soundOn) {
+    barSound.setVolume(barVolume);
+    bassSound.setVolume(bassVolume);
+    drumSound.setVolume(drumVolume);
+  } else {
+    barSound.setVolume(0);
+    bassSound.setVolume(0);
+    drumSound.setVolume(0);
+  }
 
   text('double click/tap: start/stop; drag me', width/5, barBoundry-20);
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
