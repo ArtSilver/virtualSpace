@@ -30,8 +30,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); //.parent("canvasParent").id("drawingCanvas");
-  //stopTouchScrolling(document.getElementById('drawingCanvas'));
+  createCanvas(windowWidth, windowHeight);
   earsSize = ears.width;
   barImageW=bar.width;
   barImageH=bar.height;
@@ -39,9 +38,9 @@ function setup() {
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
-  barSound.amp(barVolume);
-  bassSound.amp(bassVolume);
-  drumSound.amp(drumVolume);
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume);
+  drumSound.setVolume(drumVolume);
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
@@ -62,23 +61,25 @@ function draw() {
   image(bar, barX, barY, barDisplayW, barDisplayH);
   line(0,barBoundry,width,barBoundry);
   image(ears, earsX, earsY);
+  
+  barSound.setVolume(barVolume);
+  bassSound.setVolume(bassVolume);
+  drumSound.setVolume(drumVolume);
+  
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.getVolume();} else {playStatus = ' not playing';}
-  text('Drum vol: '+drumVolume+loopStatus+playStatus, width/2, 100);
+  text('Drum vol: '+drumVolume+loopStatus+playStatus, width/5, 100);
  
   if (bassSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (bassSound.isPlaying()) {playStatus = ' playing'+bassSound.getVolume();} else {playStatus = ' not playing';}
-  text('Bass vol: '+bassVolume+loopStatus+playStatus, width/2, 120);
+  text('Bass vol: '+bassVolume+loopStatus+playStatus, width/5, 120);
   
   if (barSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (barSound.isPlaying()) {playStatus = ' playing'+barSound.getVolume();} else {playStatus = ' not playing';}
-  text('Bar vol: '+barVolume+loopStatus+playStatus, width/2, 140);
+  text('Bar vol: '+barVolume+loopStatus+playStatus, width/5, 140);
 
-  text('output vol: '+getOutputVolume(), width/2, 160);
+  text('output vol: '+getOutputVolume(), width/5, 160);
 
-  barSound.setVolume(barVolume);
-  bassSound.setVolume(bassVolume); //bass.play();
-  drumSound.setVolume(drumVolume);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
@@ -101,7 +102,7 @@ function mouseDragged() {
       bassVolume = 0;
     }
   }
-  return false
+  return false;
 }
 
 function setupGeometry() {
@@ -124,23 +125,3 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   setupGeometry();
 }
-
-function stopTouchScrolling(canvas){
-  // Prevent scrolling when touching the canvas
-  document.body.addEventListener("touchstart", function (e) {
-      if (e.target == canvas) {
-          e.preventDefault();
-      }
-  }, { passive: false });
-  document.body.addEventListener("touchend", function (e) {
-      if (e.target == canvas) {
-          e.preventDefault();
-      }
-  }, { passive: false });
-  document.body.addEventListener("touchmove", function (e) {
-      if (e.target == canvas) {
-          e.preventDefault();
-      }
-  }, { passive: false });
-  
-  }
