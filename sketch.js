@@ -19,8 +19,6 @@ var drumVolume;
 
 var volSlider;
 var volX, volY, volSize, volRange;
-var onOffButton, buttonH;
-var soundIsOn;
 
 // Load the images and create p5.Image objects.
 function preload() {
@@ -34,34 +32,16 @@ function preload() {
   barSound = loadSound('./assets/bar.mp3');
 }
 
-function soundOnOff() {
-  if (soundIsOn) {
-    barSound.setVolume(0);
-    bassSound.setVolume(0);
-    drumSound.setVolume(0);
-  } else {
-    barSound.setVolume(barVolume);
-    bassSound.setVolume(bassVolume);
-    drumSound.setVolume(drumVolume);
-  }
-  soundIsOn = !soundIsOn;
-}
-
 function setup() {
-  buttonH = 20;
-  createCanvas(windowWidth, windowHeight-buttonH);
-  volSlider = createSlider(0, volRange, volRange/2);
-  onOffButton = createButton('Play/Pause');
-  onOffButton.mousePressed(soundOnOff);
+  createCanvas(windowWidth, windowHeight);
+  volSlider = createSlider(0, volRange, volRange/5);
 
-  soundIsOn = false;
   earsSize = ears.width;
   barImageW=bar.width;
   barImageH=bar.height;
   setupGeometry();
   volSlider.position(volX-volSize/2, volY);
   volSlider.size(volSize);
-  onOffButton.position(volX, height-buttonH);
   barVolume = 0.0;
   bassVolume = 0.5;
   drumVolume = 0.5;
@@ -71,9 +51,9 @@ function setup() {
   drumSound.loop();
   bassSound.loop();
   barSound.loop();
-  //barSound.play();
-  //drumSound.play();
-  //bassSound.play();
+  barSound.play();
+  drumSound.play();
+  bassSound.play();
 }
 
 var loopStatus;
@@ -159,5 +139,4 @@ function windowResized() {
   setupGeometry();
   volSlider.position(volX, volY);
   volSlider.size(volSize);
-  onOffButton.position(volX, volY+20);
 }
