@@ -65,7 +65,7 @@ function draw() {
   barSound.setVolume(barVolume);
   bassSound.setVolume(bassVolume);
   drumSound.setVolume(drumVolume);
-  
+
   if (drumSound.isLooping()) {loopStatus = ' looping,';} else {loopStatus = ' not looping,';}
   if (drumSound.isPlaying()) {playStatus = ' playing'+drumSound.getVolume();} else {playStatus = ' not playing';}
   text('Drum vol: '+drumVolume+loopStatus+playStatus, width/5, 100);
@@ -85,6 +85,7 @@ function draw() {
 }
 
 function mouseDragged() {
+  userStartAudio();
   let xDelta = abs(mouseX - earsX);
   let yDelta = abs(mouseY - earsY);
   if (xDelta < earsSize*0.5 && yDelta < earsSize*0.5) {
