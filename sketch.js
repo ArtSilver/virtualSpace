@@ -65,9 +65,9 @@ function draw() {
   text('Drum vol: '+drumVolume, 10, 200);
   text('Bass vol: '+bassVolume, 10, 220);
   text('Bar vol: '+barVolume, 10, 240);
-  barSound.setVolume(dBar);
-  bassSound.amp(dBass); //bass.play();
-  drumSound.amp(dDrum);
+  barSound.setVolume(barVolume);
+  bassSound.amp(bassVolume); //bass.play();
+  drumSound.amp(drumVolume);
   describe('the listener');
   //line(mouseX,mouseY, pmouseX, pmouseY);
 }
